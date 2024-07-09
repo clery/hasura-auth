@@ -24,6 +24,10 @@ export const signUpEmailPasswordHandler: RequestHandler<
   const { body } = req;
   const { email, password, options } = body;
 
+  if (req.auth?.defaultRole != 'admin') {
+    return sendError(res, 'route-not-found');
+  }
+
   if (ENV.AUTH_DISABLE_SIGNUP) {
     return sendError(res, 'signup-disabled');
   }
