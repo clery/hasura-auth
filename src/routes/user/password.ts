@@ -3,7 +3,7 @@ import { ReasonPhrases } from 'http-status-codes';
 
 import { failsElevatedCheck } from '@/middleware/auth';
 
-import { gqlSdk, hashPassword, getUserByTicket } from '@/utils';
+import { gqlSdk, getUserByTicket } from '@/utils';
 import { sendError } from '@/errors';
 import { Joi, password } from '@/validation';
 

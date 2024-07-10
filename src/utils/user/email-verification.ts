@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertUser } from './insert';
 import { getGravatarUrl } from '../avatar';
 import { EMAIL_TYPES, UserRegistrationOptionsWithRedirect } from '@/types';
-import { hashPassword } from '../password';
 import { sendEmail } from '@/email';
 import { createEmailRedirectionLink } from '../redirect';
 import { getUserByEmail } from './getters';
