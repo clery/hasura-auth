@@ -45,12 +45,12 @@ export const userPasswordHandler: RequestHandler<
     return sendError(res, 'forbidden-anonymous');
   }
   const { newPassword } = req.body;
-  const passwordHash = await hashPassword(newPassword);
+  // const passwordHash = await hashPassword(newPassword);
 
   await gqlSdk.updateUser({
     id: user.id,
     user: {
-      passwordHash,
+      passwordHash: newPassword,
       ticket: ticket ? null : undefined, // Hasura does not update when variable is undefined
     },
   });

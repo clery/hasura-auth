@@ -110,7 +110,7 @@ export const createUserAndSendVerificationEmail = async (
   }
 
   // hash password
-  const passwordHash = password && (await hashPassword(password));
+  // const passwordHash = password && (await hashPassword(password));
 
   // create ticket
   // TODO use createVerifyEmailTicket()
@@ -123,7 +123,7 @@ export const createUserAndSendVerificationEmail = async (
     displayName,
     avatarUrl: getGravatarUrl(email),
     email,
-    passwordHash,
+    passwordHash: password,
     ticket,
     ticketExpiresAt,
     emailVerified: false,
