@@ -4,11 +4,11 @@ import { sendError } from '@/errors';
 import { UserRegistrationOptionsWithRedirect } from '@/types';
 import { ENV, getSignInResponse, getUserByEmail } from '@/utils';
 import { createUserAndSendVerificationEmail } from '@/utils/user/email-verification';
-import { Joi, email, passwordInsert, registrationOptions } from '@/validation';
+import { Joi, email, registrationOptions } from '@/validation';
 
 export const signUpEmailPasswordSchema = Joi.object({
   email: email.required(),
-  password: passwordInsert.required(),
+  // password: passwordInsert.required(),
   options: registrationOptions,
 }).meta({ className: 'SignUpEmailPasswordSchema' });
 
@@ -17,12 +17,12 @@ export const signUpEmailPasswordHandler: RequestHandler<
   {},
   {
     email: string;
-    password: string;
+    // password: string;
     options: UserRegistrationOptionsWithRedirect;
   }
 > = async (req, res) => {
   const { body } = req;
-  const { email, password, options } = body;
+  const { email, options } = body;
 
   if (req.auth?.defaultRole != 'admin') {
     return sendError(res, 'route-not-found');
@@ -40,7 +40,6 @@ export const signUpEmailPasswordHandler: RequestHandler<
   const user = await createUserAndSendVerificationEmail(
     email,
     options,
-    password
   );
 
   // SIGNIN_EMAIL_VERIFIED_REQUIRED = true => User must verify their email before signing in.

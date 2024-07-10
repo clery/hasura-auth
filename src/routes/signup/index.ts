@@ -25,7 +25,7 @@ const router = Router();
  * @tags Registration
  */
 router.post(
-  '/signup/email-password',
+  '/signup/email',
   bodyValidator(signUpEmailPasswordSchema),
   aw(signUpEmailPasswordHandler)
 );
